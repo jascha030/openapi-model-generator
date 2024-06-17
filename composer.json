@@ -1,0 +1,47 @@
+{
+    "name": "jascha030/entity-generator",
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jascha030\\EntityGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jascha030",
+            "email": "contact@jaschavanaalst.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "scripts": {
+        "install-tools": [
+            "@putenv XDEBUG_MODE=off",
+            "@putenv COMPOSER_ALLOW_SUPERUSER=1",
+            "phive install --trust-gpg-keys 4AA394086372C20A,E82B2FB314E9906E,C00543248C87FB13"
+        ],
+        "analyze": [],
+        "check-style": [
+            "@install-tools",
+            "@php tools/composer-normalize normalize --dry-run --indent-size=4 --indent-style=space",
+            "@php tools/php-cs-fixer.phar fix --config=.php-cs-fixer.dist.php --dry-run --verbose"
+        ],
+        "format": [
+            "@install-tools",
+            "@php tools/composer-normalize normalize --indent-size=4 --indent-style=space",
+            "@php tools/php-cs-fixer.phar fix --config=.php-cs-fixer.dist.php --verbose"
+        ],
+        "test": [
+            "@install-tools",
+            "tools/phpunit.phar -c phpunit.xml.dist"
+        ]
+    }
+}

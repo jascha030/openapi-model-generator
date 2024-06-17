@@ -1,0 +1,23 @@
+### .gitignore
+
+## Project files
+/.idea/
+/.vscode/
+
+## Dynamic
+/.var/
+
+## Vendor
+/tools/*
+!/tools/phive
+
+/vendor-bin/*/vendor/
+/vendor/
+
+## Environment
+.env
+
+## Other
+*.log
+.DS_Store
+

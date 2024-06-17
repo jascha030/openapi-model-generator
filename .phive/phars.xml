@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpunit" version="^9.6.19" installed="9.6.19" location="./tools/phpunit.phar" copy="false"/>
+  <phar name="php-cs-fixer" version="^3.53.0" installed="3.53.0" location="./tools/php-cs-fixer.phar" copy="false"/>
+  <phar name="ergebnis/composer-normalize" version="^2.42.0" installed="2.42.0" location="./tools/composer-normalize" copy="false"/>
+</phive>

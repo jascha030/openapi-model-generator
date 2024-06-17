@@ -1,0 +1,13 @@
+parameters:
+    level: max
+    paths:
+      - 'src'
+      - 'tests'
+    bootstrapFiles:
+        - 'tools/phpunit.phar'
+        - 'tools/php-cs-fixer.phar/vendor/autoload.php'
+    excludePaths:
+        analyseAndScan:
+            - 'tests/*/Fixtures/*'
+    tmpDir: '.var/cache/phpstan'
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
