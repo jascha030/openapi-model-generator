@@ -1,5 +1,5 @@
 {
-    "name": "jascha030/entity-generator",
+    "name": "jascha030/openapi-entity-generator",
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8"
     },
