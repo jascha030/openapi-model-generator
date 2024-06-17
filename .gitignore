@@ -11,8 +11,8 @@
 /tools/*
 !/tools/phive
 
-/vendor-bin/*/vendor/
 /vendor/
+/vendor-bin/phpstan/vendor
 
 ## Environment
 .env
