@@ -8,7 +8,9 @@
         }
     ],
     "require": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "symfony/console": "^7.1",
+        "symfony/filesystem": "^7.1"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8"
@@ -16,7 +18,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Jascha030\\EntityGenerator\\": "src/"
+            "Jascha030\\OpenApiModelGenerator\\": "src/"
         }
     },
     "config": {
@@ -34,7 +36,7 @@
         }
     },
     "scripts": {
-        "analyze": [],
+        "analyze": "@php vendor/bin/phpstan --memory-limit=-1 analyse --configuration=phpstan.neon.dist",
         "check-style": [
             "@install-tools",
             "@php tools/composer-normalize normalize --dry-run --indent-size=4 --indent-style=space",
