@@ -16,10 +16,15 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": ">=8.2"
+    },
     "config": {
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true
+        },
+        "platform": {
+            "php": "8.2"
         }
     },
     "scripts": {
@@ -28,7 +33,8 @@
             "@putenv COMPOSER_ALLOW_SUPERUSER=1",
             "phive install --trust-gpg-keys 4AA394086372C20A,E82B2FB314E9906E,C00543248C87FB13"
         ],
-        "analyze": [],
+        "analyze": [
+        ],
         "check-style": [
             "@install-tools",
             "@php tools/composer-normalize normalize --dry-run --indent-size=4 --indent-style=space",
@@ -43,5 +49,11 @@
             "@install-tools",
             "tools/phpunit.phar -c phpunit.xml.dist"
         ]
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": true
+        }
     }
 }
