@@ -5,7 +5,7 @@ parameters:
       - 'tests'
     bootstrapFiles:
         - 'tools/phpunit.phar'
-        - 'tools/php-cs-fixer.phar/vendor/autoload.php'
+        - 'phar://tools/php-cs-fixer.phar/vendor/autoload.php'
     excludePaths:
         analyseAndScan:
             - 'tests/*/Fixtures/*'
