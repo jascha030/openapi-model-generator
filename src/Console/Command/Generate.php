@@ -9,7 +9,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function getcwd;
@@ -47,7 +46,7 @@ class Generate extends Command
         $iter = new ClassGenerator($inputPath, $namespace);
 
         foreach ($iter as $class) {
-            file_put_contents($outputPath . '/' . $class->getName() . '.php', $class->generate());
+            @file_put_contents($outputPath . '/' . $class->getName() . '.php', $class->generate());
         }
 
         return Command::SUCCESS;

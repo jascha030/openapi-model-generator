@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Jascha030\OpenApiModelGenerator\Console\Command\Generate;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
+(static function () {
+    require_once file_exists(__DIR__ . '/../vendor/autoload.php')
+        ? __DIR__ . '/../vendor/autoload.php'
+        : __DIR__ . '/../../../autoload.php';
+
+    $app = new Application('OpenAPI Model Generator', '0.1.0');
+    $app->add(new Generate());
+
+    try {
+        $res = $app->run(new ArgvInput(), new ConsoleOutput());
+    } catch (\Exception $e) {
+        (new ConsoleOutput())->writeln("<error>{$e->getMessage()}</error>");
+
+        $res = Command::FAILURE;
+    }
+
+    exit($res);
+})();
