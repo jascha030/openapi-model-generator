@@ -9,6 +9,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use function getcwd;
@@ -29,8 +30,8 @@ class Generate extends Command
     {
         $this
             ->addArgument('input-file', InputArgument::REQUIRED, 'path to swagger file.')
-            ->addOption('namespace', 'n', InputArgument::REQUIRED, 'namespace for generated classes.')
-            ->addOption('output', 'o', InputArgument::OPTIONAL, 'path to output directory.');
+            ->addOption('namespace', 'ns', InputOption::VALUE_REQUIRED, 'namespace for generated classes.')
+            ->addOption('output', 'o', InputOption::VALUE_REQUIRED, 'path to output directory.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -45,8 +46,9 @@ class Generate extends Command
 
         $iter = new ClassGenerator($inputPath, $namespace);
 
-        foreach ($iter as $class) {
-            @file_put_contents($outputPath . '/' . $class->getName() . '.php', $class->generate());
+        foreach ($iter as $filename => $class) {
+            dump($class);
+            file_put_contents($outputPath . '/' . $filename, $class);
         }
 
         return Command::SUCCESS;

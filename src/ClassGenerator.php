@@ -1,17 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jascha030\OpenApiModelGenerator;
 
-use AppendIterator;
 use EmptyIterator;
 use Iterator;
 use IteratorAggregate;
-use IteratorIterator;
 use Jascha030\OpenApiModelGenerator\Iterator\LazyIterator;
 use SplFileInfo;
 use Traversable;
 
-use function array_key_last;
 use function file_get_contents;
 use function Jascha\OpenApiModelGenerator\last;
 use function json_decode;
@@ -61,23 +60,19 @@ class ClassGenerator implements IteratorAggregate
         $this->parsedDoc = $decoded;
     }
 
-    public function build(): Iterator
+    public function build(): Iterator|LazyIterator|EmptyIterator
     {
-        if (!isset($this->parsedDoc['components']['schemas']) || !\is_array($this->parsedDoc['components']['schemas'])) {
-            return new EmptyIterator();
-        }
+//        if (!isset($this->parsedDoc['components']['schemas']) || !\is_array($this->parsedDoc['components']['schemas'])) {
+//            return new EmptyIterator();
+//        }
 
-        $schemas = $this->parsedDoc['components']['schemas'];
+        $schemas = $this->parsedDoc['definitions'];
 
-        $iterator = new AppendIterator();
-
-        foreach ($schemas as $className => $schema) {
-            $iterator->append(new IteratorIterator(new LazyIterator(function () use ($className, $schema): \Generator {
+        return new LazyIterator(function () use ($schemas) {
+            foreach ($schemas as $className => $schema) {
                 yield $this->sanitizeClassName($className) => $this->createModelClass($className, $schema);
-            })));
-        }
-
-        return $iterator;
+            }
+        });
     }
 
     /**
@@ -195,6 +190,6 @@ PHP,
 
     public function getIterator(): Traversable
     {
-        return $this->build();
+        yield from $this->build();
     }
 }
