@@ -9,8 +9,8 @@ use Symfony\Component\Console\Application;
 
 return static function (ContainerBuilder $builder): ContainerBuilder {
     $builder->addDefinitions([
-        'app.name' => static fn (): string => 'OpenAPI Model Generator',
-        'app.version' => static fn (): string => '0.1.0',
+        'app.name' => static fn(): string => 'OpenAPI Model Generator',
+        'app.version' => static fn(): string => '0.1.0',
         Application::class => static function (ContainerInterface $container): Application {
             $app = new Application($container->get('app.name'), $container->get('app.version'));
 

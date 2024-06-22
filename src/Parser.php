@@ -9,15 +9,14 @@ use RuntimeException;
 use SplFileInfo;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Serializer;
+
 use function file_get_contents;
 
 class Parser
 {
     private ?SwaggerDocument $parsedDoc;
 
-    public function __construct(private readonly Serializer $serializer)
-    {
-    }
+    public function __construct(private readonly Serializer $serializer) {}
 
     /**
      * @throws \InvalidArgumentException

@@ -43,7 +43,7 @@ return static function (ContainerBuilder $builder): ContainerBuilder {
                 typeExtractors: [
                     new PhpDocExtractor(),
                     new ReflectionExtractor(),
-                ]
+                ],
             );
         },
         AbstractObjectNormalizer::class => static function (ContainerInterface $container): ObjectNormalizer {

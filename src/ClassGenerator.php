@@ -62,9 +62,9 @@ class ClassGenerator implements IteratorAggregate
 
     public function build(): Iterator|LazyIterator|EmptyIterator
     {
-//        if (!isset($this->parsedDoc['components']['schemas']) || !\is_array($this->parsedDoc['components']['schemas'])) {
-//            return new EmptyIterator();
-//        }
+        //        if (!isset($this->parsedDoc['components']['schemas']) || !\is_array($this->parsedDoc['components']['schemas'])) {
+        //            return new EmptyIterator();
+        //        }
 
         $schemas = $this->parsedDoc['definitions'];
 
