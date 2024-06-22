@@ -7,7 +7,6 @@ namespace Jascha030\OpenApiModelGenerator;
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
-
 /**
  * Trait ContainerAwareTestTrait
  *
@@ -20,9 +19,13 @@ trait ContainerAwareTestTrait
         $path = dirname(__DIR__) . '/config';
 
         $builder = new ContainerBuilder();
-        $dir = new DirectoryIterator($path);
+        $dir = new \DirectoryIterator($path);
 
         foreach ($dir as $fileinfo) {
+            if ($fileinfo->isDot() || $fileinfo->isDir()) {
+                continue;
+            }
+
             $builder = (require_once $fileinfo->getRealpath())($builder);
         }
 
