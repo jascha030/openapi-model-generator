@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Jascha030\OpenApiModelGenerator\Iterator;
 
+use Closure;
 use IteratorAggregate;
 use Traversable;
 
+/**
+ * @implements IteratorAggregate<mixed,mixed>
+ */
 class LazyIterator implements IteratorAggregate
 {
     private \Closure $iteratorFactory;

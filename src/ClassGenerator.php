@@ -10,11 +10,14 @@ use IteratorAggregate;
 use Jascha030\OpenApiModelGenerator\Iterator\LazyIterator;
 use SplFileInfo;
 use Traversable;
+use Jascha030\OpenApiModelGenerator\Helper\Arr;
 
 use function file_get_contents;
-use function Jascha\OpenApiModelGenerator\last;
 use function json_decode;
 
+/**
+ * @implements IteratorAggregate<string,mixed>
+ */
 class ClassGenerator implements IteratorAggregate
 {
     private const SCALAR = [
@@ -84,7 +87,7 @@ class ClassGenerator implements IteratorAggregate
 
         $baseName = empty($parts) // @phpstan-ignore-line
             ? $fullyQualified
-            : last($parts);
+            : Arr::last($parts);
 
         return \in_array($baseName, self::SCALAR, true)
             ? strtolower($baseName)
@@ -102,7 +105,7 @@ class ClassGenerator implements IteratorAggregate
             if (isset($property['type'])) {
                 $type = $typeMap[$property['type']] ?? 'mixed';
             } elseif (isset($property['$ref'])) {
-                $type = last(explode('/', $property['$ref']));
+                $type = Arr::last(explode('/', $property['$ref']));
 
                 if (isset($this->parsedDoc['components']['schemas'][$type]['enum'])) {
                     $type = 'int';
@@ -117,7 +120,7 @@ class ClassGenerator implements IteratorAggregate
                 if (isset($property['items']['type'])) {
                     $itemType = $typeMap[$property['items']['type']] ?? 'mixed';
                 } elseif (isset($property['items']['$ref'])) {
-                    $itemType = last(explode('/', $property['items']['$ref']));
+                    $itemType = Arr::last(explode('/', $property['items']['$ref']));
 
                     if (isset($this->parsedDoc['components']['schemas'][$type]['enum'])) {
                         $itemType = 'int';
