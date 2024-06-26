@@ -24,7 +24,10 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Jascha030\\OpenApiModelGenerator\\": "src/"
+            "Jascha030\\OpenApiModelGenerator\\": "src/",
+            "Jascha030\\OpenApi\\V20\\": "swagger/v2.0",
+            "Jascha030\\OpenApi\\V30\\": "swagger/v3.0",
+            "Jascha030\\OpenApi\\V31\\": "swagger/v3.1"
         }
     },
     "autoload-dev": {
