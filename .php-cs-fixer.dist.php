@@ -19,9 +19,7 @@ if (
     && ! mkdir($cacheDirectory, 0700, true)
     && ! is_dir($cacheDirectory)
 ) {
-    throw new RuntimeException(
-        sprintf('Directory "%s" was not created', $cacheDirectory)
-    );
+    throw new RuntimeException(sprintf('Directory "%s" was not created', $cacheDirectory));
 }
 
 return (new Config())

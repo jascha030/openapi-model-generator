@@ -16,7 +16,7 @@ trait ContainerAwareTestTrait
 {
     private function getContainer(): ContainerInterface
     {
-        $path = dirname(__DIR__) . '/config';
+        $path = \dirname(__DIR__) . '/config';
 
         $builder = new ContainerBuilder();
         $dir = new \DirectoryIterator($path);
@@ -26,6 +26,9 @@ trait ContainerAwareTestTrait
                 continue;
             }
 
+            /**
+             * @noinspection UsingInclusionOnceReturnValueInspection
+             */
             $builder = (require_once $fileinfo->getRealpath())($builder);
         }
 
